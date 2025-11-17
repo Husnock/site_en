@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Welkom | Tab Digital</title>
+    <title>Welcome | Tab Digital</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,8 +12,7 @@
       rel="stylesheet"
     />
 
-        <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Husnock/site/eacab826f55fbb980a22698a1fbbcf9d6073b294/assets/LOGO.png">
-
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Husnock/site/eacab826f55fbb980a22698a1fbbcf9d6073b294/assets/LOGO.png">
 
     <style>
       :root {
@@ -46,13 +45,14 @@
         position: relative; 
       }
 
-      /* Stijl voor de taalwisselaar aangepast voor tekst */
+      /* Stijl voor de taalwisselaar - nu absoluut binnen de kaart */
       .lang-switch {
         position: absolute;
-        top: 0; 
-        right: 16px; 
-        padding: 10px 0; /* Padding boven/onder is genoeg */
+        top: 10px; /* Binnen de kaartpadding */
+        right: 10px; /* Binnen de kaartpadding */
         line-height: 1;
+        padding: 0; /* Geen padding nodig op de container */
+        display: block; 
       }
 
       .lang-switch a {
@@ -63,21 +63,20 @@
         display: inline-block;
         
         /* Nieuwe stijlen voor de tekstlink */
-        color: var(--text-muted); /* Gebruik een gedempte kleur */
+        color: var(--text-muted); 
         font-weight: 600;
         font-size: 14px; 
-        padding: 4px 8px; /* Maak het klikgebied groter */
+        padding: 4px 8px; 
         border-radius: 6px;
         border: 1px solid transparent; 
       }
       
       .lang-switch a:hover {
         opacity: 1;
-        /* Verander de styling bij hover om interactie aan te geven */
         color: var(--text-light);
         background: var(--hover-bg);
         border: 1px solid var(--border-color);
-        transform: none; /* Geen schaling meer nodig */
+        transform: none; 
       }
 
       .card {
@@ -86,6 +85,7 @@
         padding: 24px;
         background: var(--bg-card);
         box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        position: relative; /* Cruciaal: De kaart is de referentie voor de lang-switch */
       }
 
       .logo-container {
@@ -95,6 +95,7 @@
         padding: 8px;
         border-radius: 12px;
         background: none;
+        margin-top: 20px; /* Ruimte maken voor de vlag */
       }
 
       .logo-container img {
@@ -123,7 +124,21 @@
       @media (max-width: 640px) {
         .grid { grid-template-columns: 1fr; }
         .logo-container img { max-height: 70px; }
-        .lang-switch { right: 0; }
+        
+        /* Aanpassing voor mobiel */
+        .lang-switch { 
+          position: absolute; 
+          top: 10px; 
+          right: 10px; 
+        }
+        
+        .logo-container {
+           margin-top: 15px;
+        }
+
+        .wrap {
+          margin: 48px auto; /* Herstel de desktopmarge */
+        }
       }
 
       .cta {
@@ -176,31 +191,33 @@
 
   <body>
     <div class="wrap">
-      <div class="lang-switch">
-        <a href="../EN/index.html" title="Switch to English" aria-label="Switch to English">
-          🇬🇧
-        </a>
-      </div>
       <div class="card">
+        <div class="lang-switch">
+          <a href="https://www.tabdigital.nl/" title="Schakel over naar Nederlands" aria-label="Switch to Dutch">
+            🇳🇱
+          </a>
+        </div>
+        
         <div class="logo-container" aria-hidden="true">
           <img src="https://raw.githubusercontent.com/Husnock/site/eacab826f55fbb980a22698a1fbbcf9d6073b294/assets/TabDigital_full_logo.png" alt="Tab Digital logo" />
         </div>
+        
 
-        <p class="muted">Waar uw werk stroomlijnt door slimme automatisering.</p>
+        <p class="muted">Where your work flows through smart automation.</p>
 
         <div class="grid">
-          <a class="cta" href="about.html" target="_self" rel="noopener noreferrer">
+          <a class="cta" href="/about_en" target="_self" rel="noopener noreferrer">
             <div>
-              <h2>Over Tab Digital</h2>
-              <p>Zie de kracht van naadloze Google-integratie in onze projecten en ontdek hoe wij u kunnen helpen uw werk te vereenvoudigen.</p>
+              <h2>About Tab Digital</h2>
+              <p>See the power of seamless Google integration in our projects, and discover how we can help simplify your work.</p>
             </div>
-            <div class="go">Over ons</div>
+            <div class="go">About</div>
           </a>
 
-          <a class="cta" href="contact.html" target="_blank" rel="noopener noreferrer">
+          <a class="cta" href="/contact_en" target="_self" rel="noopener noreferrer">
             <div>
-              <h2>Laten we verbinden</h2>
-              <p>Wilt u uw processen optimaliseren met Google Apps Script of Workspace-integratie?</p>
+              <h2>Let’s connect</h2>
+              <p>Looking to optimize your processes with Google Apps Script or Workspace integration?</p>
             </div>
             <div class="go">Contact</div>
           </a>
@@ -210,17 +227,14 @@
 
     <footer>
       </footer>
-    
+
     <script>
       // set current year
-      const yearSpan = document.createElement('span');
-      yearSpan.id = 'year';
-      yearSpan.textContent = new Date().getFullYear();
-
+      const currentYear = new Date().getFullYear();
       const footer = document.querySelector('footer');
+
       if (footer) {
-        // Zorg ervoor dat de voettekst in het Nederlands wordt weergegeven
-        footer.innerHTML = `&copy; ${yearSpan.textContent} Tab Digital. Alle rechten voorbehouden.`;
+        footer.innerHTML = `&copy; ${currentYear} Tab Digital. All rights reserved.`;
       }
     </script>
   </body>
